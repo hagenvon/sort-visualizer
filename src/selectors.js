@@ -7,6 +7,8 @@ export const getIsActive = state => state.controller.active;
 export const getHighlighted = state => state.controller.highlighted;
 export const getIndexOfItem = (state, item) => state.array.findIndex(it=>it.id === item.id);
 
+export const getSpeed = state => state.speed;
+
 
 
 export const getSortedArray = (array)=> {

@@ -1,7 +1,7 @@
 import { put, take, delay, select } from 'redux-saga/effects'
 import {mergeSort} from "../sortings/mergeSort";
-import {getIndexOfItem, getPaused} from "../selectors";
-import {cancelSorting, highlightElements, updateArray} from "../actions";
+import {getIndexOfItem, getPaused, getSpeed} from "../selectors";
+import {cancelSorting, highlightElements, putAtInArray, updateArray} from "../actions";
 import * as actionTypes from "../actionTypes";
 
 export function* mergeSortSaga(action) {
@@ -22,7 +22,7 @@ export function* mergeSortSaga(action) {
 
                 yield put(highlightElements([indexToChange]));
 
-                yield put(updateArray({
+                yield put(putAtInArray({
                     index : indexToChange,
                     item: newPart[i]
                 }));
@@ -33,7 +33,7 @@ export function* mergeSortSaga(action) {
                     continue
                 }
 
-                yield delay( 10 );
+                yield delay( yield select(getSpeed) );
 
             }
 

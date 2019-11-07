@@ -1,7 +1,7 @@
 import { put, take, delay, select } from 'redux-saga/effects'
 import {bubbleSort} from "../sortings/bubbleSort";
 import {cancelSorting, highlightElements, swapItemsInArray} from "../actions";
-import {getPaused} from "../selectors";
+import {getPaused, getSpeed} from "../selectors";
 import * as actionTypes from "../actionTypes";
 
 
@@ -28,7 +28,7 @@ export function* bubbleSortSaga(action){
                 continue
             }
 
-            yield delay( 10 );
+            yield delay( yield select(getSpeed) );
 
         }
 

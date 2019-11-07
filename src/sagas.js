@@ -1,15 +1,9 @@
 import { put, takeEvery, take, call, fork, cancel, spawn, cancelled, delay, select } from 'redux-saga/effects'
 import * as actionTypes from "./actionTypes";
 
-import {updateArray, stopSorting, highlightElements, cancelSorting, swapItemsInArray} from "./actions";
-import {getIndexOfItem, getPaused} from "./selectors";
-
-import {mergeSort} from "./sortings/mergeSort";
 
 import {bubbleSortSaga} from "./sagas/bubbleSortSaga";
 import {mergeSortSaga} from "./sagas/mergeSortSaga";
-
-// worker Saga
 
 
 function getSortSaga(sortType){
@@ -22,7 +16,7 @@ function getSortSaga(sortType){
 }
 
 
-export function* watchStartMergeSort() {
+export function* watchSortingActions() {
 
 
     while(true){
@@ -38,10 +32,3 @@ export function* watchStartMergeSort() {
     }
 }
 
-
-
-
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-// export function* watchStartMergeSort() {
-//     yield takeEvery(actionTypes.START_SORTING, startMergeSort);
-// }

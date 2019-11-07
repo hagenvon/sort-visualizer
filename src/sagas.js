@@ -4,12 +4,13 @@ import * as actionTypes from "./actionTypes";
 
 import {bubbleSortSaga} from "./sagas/bubbleSortSaga";
 import {mergeSortSaga} from "./sagas/mergeSortSaga";
-
+import {radixSortSaga} from "./sagas/radixSortSaga";
 
 function getSortSaga(sortType){
     const lib = {
         mergeSort: mergeSortSaga,
-        bubbleSort: bubbleSortSaga
+        bubbleSort: bubbleSortSaga,
+        radixSort: radixSortSaga
     };
 
     return lib[sortType];

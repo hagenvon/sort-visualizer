@@ -5,7 +5,7 @@ import {makeGetColorByRatio} from "./helper/getBackgroundColor";
 const getColorByRatio = makeGetColorByRatio('#b92b27', '#1565C0');
 
 const itemStyle = ({value, index, total}) => {
-
+    value = value/1000;
     const width = 100 / total + "%";
     return {
         height: (value + 10) + "px",
@@ -19,7 +19,7 @@ const itemStyle = ({value, index, total}) => {
 const itemContentStyle = ({value, isHighlighted}) => {
 
     return {
-        backgroundColor: isHighlighted? shadeColor(getColorByRatio(value / 100), -50) : getColorByRatio(value / 100),
+        backgroundColor: isHighlighted? shadeColor(getColorByRatio(value / 100000), -50) : getColorByRatio(value / 100000),
         position: "absolute",
         top: 0,
         left: 1,

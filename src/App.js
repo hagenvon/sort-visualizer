@@ -10,9 +10,9 @@ import {getArray, getHighlighted, getIsActive, getIsSorted, getPaused} from "./s
 
 const TOTAL_COUNT = 50;
 const MIN_VALUE = 0;
-const MAX_VALUE = 100;
+const MAX_VALUE = 100000;
 
-function App({array, createRandomArray, startMergeSort, startBubbleSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
+function App({array, createRandomArray, startMergeSort, startBubbleSort,startRadixSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
 
   return (
       <div className="App">
@@ -43,6 +43,11 @@ function App({array, createRandomArray, startMergeSort, startBubbleSort,  highli
             startBubbleSort(array)
           } }>
             bubble sort
+          </button>
+          <button onClick={()=> {
+            startRadixSort(array)
+          } }>
+            radix sort
           </button>
           <button disabled={!isActive} onClick={()=> {
             paused ? resumeSorting() : stopSorting()
@@ -77,6 +82,9 @@ const mapDispatch = (dispatch, ownProps) => {
     },
     startBubbleSort: (array) => {
       dispatch(startSorting({startingState: array, sortType: "bubbleSort"}));
+    },
+    startRadixSort: (array) => {
+      dispatch(startSorting({startingState: array, sortType: "radixSort"}));
     },
     stopSorting: () => {
       dispatch(stopSorting());

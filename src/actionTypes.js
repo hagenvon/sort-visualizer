@@ -1,0 +1,11 @@
+export const CREATE_ARRAY = "CREATE_ARRAY";
+export const UPDATE_ARRAY = "UPDATE_ARRAY";
+export const SWAP_ITEMS = "SWAP_ITEMS";
+
+export const START_SORTING = "START_SORTING";
+export const STOP_SORTING = "STOP_SORTING";
+export const CANCEL_SORTING = "CANCEL_SORTING";
+export const RESUME_SORTING = "RESUME_SORTING";
+
+export const HIGHLIGHT_ELEMENTS = "HIGHLIGHT_ELEMENTS";
+export const MERGE_SORT_STEP = "MERGE_SORT_STEP";

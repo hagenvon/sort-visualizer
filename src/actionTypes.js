@@ -2,6 +2,7 @@ export const CREATE_ARRAY = "CREATE_ARRAY";
 export const UPDATE_ARRAY = "UPDATE_ARRAY";
 export const SWAP_ITEMS = "SWAP_ITEMS";
 export const PUT_AT = "PUT_AT";
+export const UPDATE_SEQUENCE = "UPDATE_SEQUENCE";
 
 export const START_SORTING = "START_SORTING";
 export const STOP_SORTING = "STOP_SORTING";

@@ -8,11 +8,9 @@ import {createRandomArray } from "./helper/createRandomArray";
 import {createArray, startSorting, stopSorting, resumeSorting} from "./actions";
 import {getArray, getHighlighted, getIsActive, getIsSorted, getPaused} from "./selectors";
 
-const TOTAL_COUNT = 50;
-const MIN_VALUE = 0;
-const MAX_VALUE = 100000;
+import {MAX_VALUE, MIN_VALUE, TOTAL_COUNT} from "./_constants";
 
-function App({array, createRandomArray, startMergeSort, startBubbleSort,startRadixSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
+function App({array, createRandomArray, startMergeSort,startQuickSort, startBubbleSort,startRadixSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
 
   return (
       <div className="App">
@@ -48,6 +46,11 @@ function App({array, createRandomArray, startMergeSort, startBubbleSort,startRad
             startRadixSort(array)
           } }>
             radix sort
+          </button>
+          <button onClick={()=> {
+            startQuickSort(array)
+          } }>
+            quick sort
           </button>
           <button disabled={!isActive} onClick={()=> {
             paused ? resumeSorting() : stopSorting()
@@ -85,6 +88,9 @@ const mapDispatch = (dispatch, ownProps) => {
     },
     startRadixSort: (array) => {
       dispatch(startSorting({startingState: array, sortType: "radixSort"}));
+    },
+    startQuickSort: (array) => {
+      dispatch(startSorting({startingState: array, sortType: "quickSort"}));
     },
     stopSorting: () => {
       dispatch(stopSorting());

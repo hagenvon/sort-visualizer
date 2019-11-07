@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 
 import {makeGetColorByRatio} from "./helper/getBackgroundColor";
-
+import {MAX_VALUE, MIN_VALUE, TOTAL_COUNT} from "./_constants";
 const getColorByRatio = makeGetColorByRatio('#b92b27', '#1565C0');
 
+
 const itemStyle = ({value, index, total}) => {
-    value = value/1000;
+    value = value/(MAX_VALUE/100);
     const width = 100 / total + "%";
     return {
         height: (value + 10) + "px",
@@ -19,7 +20,7 @@ const itemStyle = ({value, index, total}) => {
 const itemContentStyle = ({value, isHighlighted}) => {
 
     return {
-        backgroundColor: isHighlighted? shadeColor(getColorByRatio(value / 100000), -50) : getColorByRatio(value / 100000),
+        backgroundColor: isHighlighted? shadeColor(getColorByRatio(value / MAX_VALUE), -50) : getColorByRatio(value / MAX_VALUE),
         position: "absolute",
         top: 0,
         left: 1,

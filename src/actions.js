@@ -5,6 +5,7 @@ export const createArray = createAction(actionTypes.CREATE_ARRAY);
 export const updateArray = createAction(actionTypes.UPDATE_ARRAY);
 export const swapItemsInArray = createAction(actionTypes.SWAP_ITEMS);
 export const putAtInArray = createAction(actionTypes.PUT_AT);
+export const updateSequenceInArray = createAction(actionTypes.UPDATE_SEQUENCE);
 
 export const startSorting = createAction(actionTypes.START_SORTING);
 export const stopSorting = createAction(actionTypes.STOP_SORTING);

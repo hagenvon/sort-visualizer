@@ -1,5 +1,5 @@
 import * as actionTypes from "../actionTypes";
-import {putAt, swapItems} from "../helper/arrayUtils";
+import {putAt, swapItems, updateSequence} from "../helper/arrayUtils";
 
 export default function arrayReducer(state = [], action){
 
@@ -14,6 +14,10 @@ export default function arrayReducer(state = [], action){
         case actionTypes.SWAP_ITEMS:
             const {from, to} = action.payload;
             return swapItems(state, from, to);
+
+        case actionTypes.UPDATE_SEQUENCE:
+            const {startingIndex, items} = action.payload;
+            return updateSequence(state, startingIndex, items);
 
         case actionTypes.CREATE_ARRAY:
             return [...action.payload];

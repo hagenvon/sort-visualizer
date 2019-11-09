@@ -19,17 +19,20 @@ export function* quickSortSaga(action){
 
 
         for (let step of iterator){
-            if (!step.update) continue;
 
-            // let pivotIndex = yield select(getIndexOfItem, step.pivot);
-            // let to = yield select(getIndexOfItem, step.j);
-            //
-            // yield put(highlightElements([from, to]));
-            //
-            // yield put(swapItemsInArray({
-            //     from : from,
-            //     to: to
-            // }));
+
+            let pivotIndex = yield select(getIndexOfItem, step.pivot);
+            let from = yield select(getIndexOfItem, step.from);
+            let to = yield select(getIndexOfItem, step.to);
+
+            yield put(highlightElements([from, to, pivotIndex]));
+
+            if (step.update) {
+                yield put(swapItemsInArray({
+                    from : from,
+                    to: to
+                }));
+            }
 
             const paused = yield select(getPaused);
             if (paused) {

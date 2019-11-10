@@ -6,13 +6,15 @@ import {bubbleSortSaga} from "./sagas/bubbleSortSaga";
 import {mergeSortSaga} from "./sagas/mergeSortSaga";
 import {radixSortSaga} from "./sagas/radixSortSaga";
 import {quickSortSaga} from "./sagas/quickSortSaga";
+import {insertionSortSaga} from "./sagas/insertionSortSaga";
 
 function getSortSaga(sortType){
     const lib = {
         mergeSort: mergeSortSaga,
         bubbleSort: bubbleSortSaga,
         radixSort: radixSortSaga,
-        quickSort: quickSortSaga
+        quickSort: quickSortSaga,
+        insertionSort: insertionSortSaga
     };
 
     return lib[sortType];

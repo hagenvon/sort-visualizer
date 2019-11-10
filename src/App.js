@@ -9,8 +9,9 @@ import {createArray, startSorting, stopSorting, resumeSorting} from "./actions";
 import {getArray, getHighlighted, getIsActive, getIsSorted, getPaused} from "./selectors";
 
 import {MAX_VALUE, MIN_VALUE, TOTAL_COUNT} from "./_constants";
+import * as sortTypes from "./sortings/_sortTypes";
 
-function App({array, createRandomArray, startMergeSort,startQuickSort, startBubbleSort,startRadixSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
+function App({array, createRandomArray,startSorting, startMergeSort,startQuickSort, startBubbleSort,startRadixSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
 
   return (
       <div className="App">
@@ -52,6 +53,11 @@ function App({array, createRandomArray, startMergeSort,startQuickSort, startBubb
           } }>
             quick sort
           </button>
+          <button onClick={()=> {
+            startSorting(array, sortTypes.INSERTION)
+          } }>
+            insertion sort
+          </button>
           <button disabled={!isActive} onClick={()=> {
             paused ? resumeSorting() : stopSorting()
           } }>
@@ -91,6 +97,9 @@ const mapDispatch = (dispatch, ownProps) => {
     },
     startQuickSort: (array) => {
       dispatch(startSorting({startingState: array, sortType: "quickSort"}));
+    },
+    startSorting: (array, sortType) => {
+      dispatch(startSorting({startingState: array, sortType}));
     },
     stopSorting: () => {
       dispatch(stopSorting());

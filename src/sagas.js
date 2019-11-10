@@ -1,7 +1,7 @@
 import { put, takeEvery, take, call, fork, cancel, spawn, cancelled, delay, select } from 'redux-saga/effects'
 import * as actionTypes from "./actionTypes";
 
-
+import * as sortTypes from "./sortings/_sortTypes";
 import {bubbleSortSaga} from "./sagas/bubbleSortSaga";
 import {mergeSortSaga} from "./sagas/mergeSortSaga";
 import {radixSortSaga} from "./sagas/radixSortSaga";
@@ -10,11 +10,11 @@ import {insertionSortSaga} from "./sagas/insertionSortSaga";
 
 function getSortSaga(sortType){
     const lib = {
-        mergeSort: mergeSortSaga,
-        bubbleSort: bubbleSortSaga,
-        radixSort: radixSortSaga,
-        quickSort: quickSortSaga,
-        insertionSort: insertionSortSaga
+        [sortTypes.MERGE]: mergeSortSaga,
+        [sortTypes.BUBBLE]: bubbleSortSaga,
+        [sortTypes.RADIX]: radixSortSaga,
+        [sortTypes.QUICK]: quickSortSaga,
+        [sortTypes.INSERTION]: insertionSortSaga
     };
 
     return lib[sortType];

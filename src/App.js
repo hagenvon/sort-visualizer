@@ -34,22 +34,22 @@ function App({array, createRandomArray,startSorting, startMergeSort,startQuickSo
           </button>
 
           <button onClick={()=> {
-            startMergeSort(array)
+            startSorting(array, sortTypes.MERGE)
           } }>
             merge sort
           </button>
           <button onClick={()=> {
-            startBubbleSort(array)
+            startSorting(array, sortTypes.BUBBLE)
           } }>
             bubble sort
           </button>
           <button onClick={()=> {
-            startRadixSort(array)
+            startSorting(array, sortTypes.RADIX)
           } }>
             radix sort
           </button>
           <button onClick={()=> {
-            startQuickSort(array)
+            startSorting(array, sortTypes.QUICK)
           } }>
             quick sort
           </button>

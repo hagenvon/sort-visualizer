@@ -1,75 +1,128 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import './App.css';
-import Item from './Item.js';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import "./App.css";
+import Item from "./Item.js";
 
-import {createRandomArray } from "./helper/createRandomArray";
+import { createRandomArray } from "./helper/createRandomArray";
 
-import {createArray, startSorting, stopSorting, resumeSorting} from "./actions";
-import {getArray, getHighlighted, getIsActive, getIsSorted, getPaused} from "./selectors";
+import {
+  createArray,
+  startSorting,
+  stopSorting,
+  resumeSorting
+} from "./actions";
+import {
+  getArray,
+  getHighlighted,
+  getIsActive,
+  getIsSorted,
+  getPaused
+} from "./selectors";
 
-import {MAX_VALUE, MIN_VALUE, TOTAL_COUNT} from "./_constants";
+import { MAX_VALUE, MIN_VALUE, TOTAL_COUNT } from "./_constants";
 import * as sortTypes from "./sortings/_sortTypes";
 
-function App({array, createRandomArray,startSorting, startMergeSort,startQuickSort, startBubbleSort,startRadixSort,  highlighted, resumeSorting, stopSorting,isActive, paused, isSorted}) {
-
+function App({
+  array,
+  createRandomArray,
+  startSorting,
+  highlighted,
+  resumeSorting,
+  stopSorting,
+  isActive,
+  paused,
+  isSorted
+}) {
   return (
-      <div className="App">
-        {"" + isSorted}
-        <div className="wrapper">
-          <div className="item-container">
-            {array.map(({value, id}, index)=> {
-              const isHighlighted = highlighted.includes(index);
-              // console.log(highlighted);
-                return <Item value={value} id={id} index={index} key={index} total={TOTAL_COUNT} isHighlighted={isHighlighted}/>
-            } )}
-          </div>
+    <div className="App">
+      {"" + isSorted}
+      <div className="wrapper">
+        <div className="item-container">
+          {array.map(({ value, id }, index) => {
+            const isHighlighted = highlighted.includes(index);
+            // console.log(highlighted);
+            return (
+              <Item
+                value={value}
+                id={id}
+                index={index}
+                key={index}
+                total={TOTAL_COUNT}
+                isHighlighted={isHighlighted}
+              />
+            );
+          })}
         </div>
-        <div className="controls">
-
-          <button onClick={()=> {
-            createRandomArray()
-          } }>
-            create new array
-          </button>
-
-          <button onClick={()=> {
-            startSorting(array, sortTypes.MERGE)
-          } }>
-            merge sort
-          </button>
-          <button onClick={()=> {
-            startSorting(array, sortTypes.BUBBLE)
-          } }>
-            bubble sort
-          </button>
-          <button onClick={()=> {
-            startSorting(array, sortTypes.RADIX)
-          } }>
-            radix sort
-          </button>
-          <button onClick={()=> {
-            startSorting(array, sortTypes.QUICK)
-          } }>
-            quick sort
-          </button>
-          <button onClick={()=> {
-            startSorting(array, sortTypes.INSERTION)
-          } }>
-            insertion sort
-          </button>
-          <button disabled={!isActive} onClick={()=> {
-            paused ? resumeSorting() : stopSorting()
-          } }>
-            pause/play
-          </button>
-        </div>
-
-
-
-
       </div>
 
+      <div className="controls">
+        <button
+          onClick={() => {
+            createRandomArray();
+          }}
+        >
+          create new array
+        </button>
+
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.MERGE);
+          }}
+        >
+          merge sort
+        </button>
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.BUBBLE);
+          }}
+        >
+          bubble sort
+        </button>
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.RADIX);
+          }}
+        >
+          radix sort
+        </button>
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.QUICK);
+          }}
+        >
+          quick sort
+        </button>
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.INSERTION);
+          }}
+        >
+          insertion sort
+        </button>
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.SELECTION);
+          }}
+        >
+          selection sort
+        </button>
+        <button
+          onClick={() => {
+            startSorting(array, sortTypes.HEAP);
+          }}
+        >
+          heap sort
+        </button>
+        <button
+          disabled={!isActive}
+          onClick={() => {
+            paused ? resumeSorting() : stopSorting();
+          }}
+        >
+          pause/play
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -83,23 +136,13 @@ const mapProps = state => ({
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    createRandomArray: ()=> {
-      dispatch(createArray(createRandomArray(TOTAL_COUNT, MIN_VALUE, MAX_VALUE)))
-    },
-    startMergeSort: (array) => {
-      dispatch(startSorting({startingState: array, sortType: "mergeSort"}));
-    },
-    startBubbleSort: (array) => {
-      dispatch(startSorting({startingState: array, sortType: "bubbleSort"}));
-    },
-    startRadixSort: (array) => {
-      dispatch(startSorting({startingState: array, sortType: "radixSort"}));
-    },
-    startQuickSort: (array) => {
-      dispatch(startSorting({startingState: array, sortType: "quickSort"}));
+    createRandomArray: () => {
+      dispatch(
+        createArray(createRandomArray(TOTAL_COUNT, MIN_VALUE, MAX_VALUE))
+      );
     },
     startSorting: (array, sortType) => {
-      dispatch(startSorting({startingState: array, sortType}));
+      dispatch(startSorting({ startingState: array, sortType }));
     },
     stopSorting: () => {
       dispatch(stopSorting());
@@ -107,7 +150,10 @@ const mapDispatch = (dispatch, ownProps) => {
     resumeSorting: () => {
       dispatch(resumeSorting());
     }
-  }
+  };
 };
 
-export default connect(mapProps, mapDispatch)(App);
+export default connect(
+  mapProps,
+  mapDispatch
+)(App);
